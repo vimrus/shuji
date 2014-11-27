@@ -1,19 +1,15 @@
 package main
 
 import (
-	"fmt"
 	"github.com/julienschmidt/httprouter"
+	"github.com/vimrus/shuji/controllers"
 	"log"
 	"net/http"
 )
 
-func index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	fmt.Fprintf(w, "hello shuji!")
-}
-
 func main() {
 	router := httprouter.New()
-	router.GET("/", index)
+	router.GET("/", controllers.Index)
 
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
