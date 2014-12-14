@@ -1,15 +1,13 @@
 package main
 
 import (
-	"github.com/julienschmidt/httprouter"
 	"github.com/vimrus/shuji/controllers"
-	"log"
-	"net/http"
+	"github.com/vimrus/shuji/web"
 )
 
 func main() {
-	router := httprouter.New()
-	router.GET("/", controllers.Index)
+	web := web.New()
+	web.GET("/", controllers.Index)
 
-	log.Fatal(http.ListenAndServe(":8080", router))
+	web.Listen(":8080")
 }
