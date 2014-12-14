@@ -68,7 +68,7 @@ func (engine *Engine) PATCH(patt string, handler HandlerFunc) {
 //https://github.com/daryl/zeus
 //Copyright (c) 2014 Daryl Ginn
 func (engine *Engine) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path[:8] == "/static/" {
+	if len(r.URL.Path) > 8 && r.URL.Path[:8] == "/static/" {
 		fileServer := http.StripPrefix("/static/", http.FileServer(http.Dir("./static/")))
 		fileServer.ServeHTTP(w, r)
 		return
