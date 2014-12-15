@@ -8,6 +8,22 @@
 <link rel="stylesheet" type="text/css" media="screen"  href="/static/css/style.css" />
 </head>
 <body>
-{% block content %}{% endblock %}
+<div class="header">
+  <div class="container clearfix">
+    <h1><a class="header-logo" href="http://shuji.io">书集</a></h1>
+    <div class="heder-search">
+      <form action="/search" method="get">
+        <input type="text" name="q">
+      </form>
+    </div>
+    <ul class="header-nav left"></ul>
+    <ul class="header-nav right"></ul>
+  </div>
+</div>
+<div class="main">
+  <div class="container clearfix">
+    {% block content %}{% endblock %}
+  </div>
+</div>
 </body>
 </html>

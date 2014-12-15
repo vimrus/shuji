@@ -1,0 +1,17 @@
+.container {
+    width:1000px;
+    margin:0 auto;
+}
+.clearfix:after {
+    display: table;
+    clear: both;
+    content: "";
+}
+.header {
+    padding: 10px 0;
+}
+.header h1 {
+    float: left;
+    font-size:17px;
+    margin: 0 10px 0 0;
+}
