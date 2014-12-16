@@ -1,3 +1,16 @@
+body, div, dl, dt, dd, ul, li, h1, h2, h3,
+h4, h5, h6, pre, code, form, fieldset, legend,
+input, button, textarea, blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Open Sans","Clear Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #333;
+    background-color: #fff;
+}
 .container {
     width:1000px;
     margin:0 auto;
@@ -9,9 +22,14 @@
 }
 .header {
     padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
 }
 .header h1 {
     float: left;
-    font-size:17px;
+    font-size: 20px;
     margin: 0 10px 0 0;
+}
+.header h1 a {
+    text-decoration:none;
+    color: #333;
 }
