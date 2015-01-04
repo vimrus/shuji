@@ -1,16 +1,34 @@
-package controllers
+package handlers
 
 import (
-	"github.com/vimrus/shuji/web"
+	"github.com/flosch/pongo2"
+	"github.com/gin-gonic/gin"
+	//"github.com/vimrus/shuji/models"
 )
 
-func Login(c *web.Context) {
-	c.HTML(200, "login.html", web.H{})
+type RegisterJson struct {
+	Email    string `json:"email" binding:"required"`
+	User     string `json:"user" binding:"required"`
+	Password string `json:"password" binding:"required"`
 }
 
-func Logout(c *web.Context) {
+func Login(c *gin.Context) {
+	c.HTML(200, "templates/login.html", pongo2.Context{})
 }
 
-func Signup(c *web.Context) {
-	c.HTML(200, "signup.html", web.H{})
+func Signin(c *gin.Context) {
+}
+
+func Logout(c *gin.Context) {
+}
+
+func Register(c *gin.Context) {
+	c.HTML(200, "templates/register.html", pongo2.Context{})
+}
+
+func Signup(c *gin.Context) {
+	var json RegisterJson
+	c.Bind(&json)
+
+	c.JSON(200, gin.H{"Ok": "true"})
 }

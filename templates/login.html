@@ -1,0 +1,16 @@
+{%extends "layout.html"%}
+{% block title %}登录{% endblock %}
+{%block content%}
+<form id="login-form" class="form form-vertical" action="#" method="post" name="login-form">
+<h1>登录</h1>
+<p class="field">
+<label for="user">用户名</label>
+<input id="user" type="text" name="user"/>
+</p>
+<p class="field">
+<label for="password">用户密码</label>
+<input id="password" type="password" name="password"/>
+</p>
+<button class="btn btn-blue">登 录</button>
+</form>
+{%endblock%}

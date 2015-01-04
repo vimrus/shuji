@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+{% block title %}注册{% endblock %}
+{% block content %}
+<h1>注册</h1>
+<form id="login-form" class="form" action="#" method="post" name="signup-form">
+    <div class="alert alert-danger" id="loginMsg"></div> 
+    <div class="form-group"> 
+        <label class="control-label" for="email">Email</label>
+        <input type="text" class="form-control" id="email" name="email"> 
+    </div>
+    <div class="form-group"> 
+        <label class="control-label" for="email">用户名</label>
+        <input type="text" class="form-control" id="user" name="user"> 
+    </div>
+    <div class="form-group"> 
+        <label class="control-label" for="pwd">密码</label>
+        <input type="password" class="form-control" id="pwd" name="pwd">
+        密码至少6位 
+    </div>
+    <div class="form-group"> 
+        <label class="control-label" for="pwd2">确认密码</label>
+        <input type="password" class="form-control" id="pwd2" name="pwd2" >
+    </div>
+
+    <button id="registerBtn" class="btn btn-success">注册</button>
+
+    <div class="line line-dashed"></div>
+
+    <p class="text-muted text-center"><small>已有帐户?</small></p>
+
+    <a id="loginBtn" href="/login" class="btn btn-default btn-block">登录</a>
+</form>
+{% endblock %}
+{% block js %}
+<script>
+$(function() {
+    $("#email").focus();
+
+    function showMsg(msg, id) {
+        $("#loginMsg").html(msg).show();
+        if(id) {
+            $("#" + id).focus();
+        }
+    }
+    function hideMsg() {
+        $("#loginMsg").hide();
+    }
+    $("#registerBtn").click(function(e){
+        e.preventDefault();
+        var email = $("#email").val();
+        var user  = $("#user").val();
+        var pwd   = $("#pwd").val();
+        var pwd2  = $("#pwd2").val();
+        if(!email) {
+            showMsg("请输入Email", "email");
+            return;
+        } else {
+            var emailreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[0-9a-zA-Z]{2,3}$/;
+            if(!emailreg.test(email)) {
+                showMsg("Email格式有误", "email");
+                return;
+            }
+        }
+        if(!user) {
+            showMsg("请输入用户名", "user");
+            return;
+        } else {
+            var userreg = /^[a-zA-Z]{1}([a-zA-Z0-9_]){3,13}$/;
+            if(!userreg.test(user)) {
+                showMsg("用户必须为4-14位", "user");
+                return;
+            }
+        }
+        if(!pwd) {
+            showMsg("请输入密码", "pwd");
+            return;
+        } else {
+            if(pwd.length < 6) {
+                showMsg("密码至少6位", "pwd");
+                return;
+            }
+        }
+        if(!pwd2) {
+            showMsg("请输入确认密码", "pwd2");
+            return;
+        } else {
+            if(pwd != pwd2) {
+                showMsg("两次密码输入不正确", "pwd2");
+                return;
+            }
+        }
+
+        $("#registerBtn").html("正在处理...").addClass("disabled");
+
+
+        var iu = "";
+
+        $.post("/register", {email: email, password: pwd, iu: iu}, function(e) {
+            $("#registerBtn").html("注册").removeClass("disabled");
+            if(e.Ok) {
+                $("#registerBtn").html("注册成功, 正在跳转...");
+                var from = $("#from").val() || "/";
+                location.href = from;
+            } else {
+                showMsg(e.Msg, "email");
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

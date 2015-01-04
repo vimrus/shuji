@@ -17,6 +17,9 @@ body {
 .right {
     float:right;
 }
+.hide {
+    display:none;
+}
 .header-inner {
     max-width:1280px;
     margin:0 auto;
@@ -74,5 +77,15 @@ body {
     padding: 15px 3px;
 }
 .main {
-    padding-top: 10px;
+}
+.header-actions {
+    margin-top: 10px;
+    float:right;
+}
+.header-actions a.button {
+    color: #fff;
+    background-color: #8ec165;
+    border-color: #8ec165;
+    border-radius: 2px;
+    padding:0 10px;
 }
