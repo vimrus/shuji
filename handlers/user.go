@@ -3,13 +3,14 @@ package handlers
 import (
 	"github.com/flosch/pongo2"
 	"github.com/gin-gonic/gin"
-	//"github.com/vimrus/shuji/models"
+	"github.com/gin-gonic/gin/binding"
+	"github.com/vimrus/shuji/models"
 )
 
-type RegisterJson struct {
-	Email    string `json:"email" binding:"required"`
-	User     string `json:"user" binding:"required"`
-	Password string `json:"password" binding:"required"`
+type RegisterForm struct {
+	Email    string `form:"email" binding:"required"`
+	Name     string `form:"name" binding:"required"`
+	Password string `form:"password" binding:"required"`
 }
 
 func Login(c *gin.Context) {
@@ -27,8 +28,9 @@ func Register(c *gin.Context) {
 }
 
 func Signup(c *gin.Context) {
-	var json RegisterJson
-	c.Bind(&json)
+	var form RegisterForm
+	c.BindWith(&form, binding.Form)
 
+	models.CreateUser(form.Name, form.Email, form.Password)
 	c.JSON(200, gin.H{"Ok": "true"})
 }

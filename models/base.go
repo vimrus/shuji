@@ -3,9 +3,10 @@ package models
 import (
 	"database/sql"
 	"github.com/coopernurse/gorp"
-	//"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
 )
+
+var dbmap *gorp.DbMap = getDB()
 
 func getDB() *gorp.DbMap {
 	db, err := sql.Open("mysql", "root:password@/shuji")
@@ -13,5 +14,7 @@ func getDB() *gorp.DbMap {
 		panic(err)
 	}
 
-	return &gorp.DbMap{Db: db, Dialect: gorp.MySQLDialect{"InnoDB", "UTF8"}}
+	dbmap := &gorp.DbMap{Db: db, Dialect: gorp.MySQLDialect{"InnoDB", "UTF8"}}
+	dbmap.AddTableWithName(User{}, "user").SetKeys(true, "Id")
+	return dbmap
 }

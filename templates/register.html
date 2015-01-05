@@ -46,6 +46,7 @@ $(function() {
         $("#loginMsg").hide();
     }
     $("#registerBtn").click(function(e){
+
         e.preventDefault();
         var email = $("#email").val();
         var user  = $("#user").val();
@@ -90,12 +91,7 @@ $(function() {
             }
         }
 
-        $("#registerBtn").html("正在处理...").addClass("disabled");
-
-
-        var iu = "";
-
-        $.post("/register", {email: email, password: pwd, iu: iu}, function(e) {
+        $.post("/register", {email: email, password: pwd, name: user}, function(e) {
             $("#registerBtn").html("注册").removeClass("disabled");
             if(e.Ok) {
                 $("#registerBtn").html("注册成功, 正在跳转...");

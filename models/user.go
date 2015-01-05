@@ -8,12 +8,11 @@ import (
 type User struct {
 	Id        int64
 	Name      string
-	Nick      string
 	Password  string
 	Email     string
 	Avatar    string
-	CreatedAt *time.Time
-	LastLogin *time.Time
+	CreatedAt string
+	LastLogin string
 }
 
 func GetUserByName(name string) string {
@@ -24,4 +23,9 @@ func GetUserByName(name string) string {
 	}
 	count = count + 1
 	return "i"
+}
+
+func CreateUser(name string, email string, password string) {
+	user := &User{0, name, password, email, "", time.Now().Format("2006-01-02 15:04:05"), ""}
+	dbmap.Insert(user)
 }
