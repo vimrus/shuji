@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/flosch/pongo2"
+	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
-	"github.com/tommy351/gin-sessions"
 	"github.com/vimrus/shuji/handlers"
 	"net/http"
 )
@@ -46,7 +46,7 @@ func main() {
 	r := gin.Default()
 
 	store := sessions.NewCookieStore([]byte("s3cr3t"))
-	r.Use(sessions.Middleware("sid", store))
+	r.Use(sessions.Sessions("session", store))
 
 	//r.LoadHTMLTemplates("templates/*")
 	r.HTMLRender = newPongoRender()

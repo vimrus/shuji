@@ -25,7 +25,8 @@ func GetUserByName(name string) string {
 	return "i"
 }
 
-func CreateUser(name string, email string, password string) {
+func CreateUser(name string, email string, password string) (*User, error) {
 	user := &User{0, name, password, email, "", time.Now().Format("2006-01-02 15:04:05"), ""}
-	dbmap.Insert(user)
+	err := dbmap.Insert(user)
+	return user, err
 }

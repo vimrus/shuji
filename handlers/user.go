@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"github.com/flosch/pongo2"
+	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/vimrus/shuji/models"
@@ -31,6 +32,15 @@ func Signup(c *gin.Context) {
 	var form RegisterForm
 	c.BindWith(&form, binding.Form)
 
-	models.CreateUser(form.Name, form.Email, form.Password)
+	user, err := models.CreateUser(form.Name, form.Email, form.Password)
+	if err != nil {
+		panic(err)
+		panic(user)
+	}
+	session := sessions.Default(c)
+	session.Set("username", user.Name)
+	session.Set("avatar", user.Avatar)
+	session.Save()
+
 	c.JSON(200, gin.H{"Ok": "true"})
 }
