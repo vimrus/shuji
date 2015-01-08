@@ -23,8 +23,13 @@
       <li class="nav-item"><a href="/blog">博客</a></li>
     </ul>
     <div class="header-actions">
+      {% if username == nil %}
       <a href="/login" class="button">登录</a></li>
       <a href="/register" class="button">注册</a></li>
+      {% else %}
+      {{ username }}
+      <a href="/new" class="button">创建书籍</a></li>
+      {% endif %}
     </div>
   </div>
 </div>

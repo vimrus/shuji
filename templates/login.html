@@ -1,16 +1,77 @@
 {%extends "layout.html"%}
 {% block title %}登录{% endblock %}
 {%block content%}
-<form id="login-form" class="form form-vertical" action="#" method="post" name="login-form">
 <h1>登录</h1>
-<p class="field">
-<label for="user">用户名</label>
-<input id="user" type="text" name="user"/>
-</p>
-<p class="field">
-<label for="password">用户密码</label>
-<input id="password" type="password" name="password"/>
-</p>
-<button class="btn btn-blue">登 录</button>
+<form id="login-form" class="form" action="#" method="post" name="signin-form">
+    <div class="alert alert-danger" id="loginMsg"></div> 
+    <div class="form-group"> 
+        <label class="control-label" for="email">用户名</label>
+        <input type="text" class="form-control" id="user" name="user"> 
+    </div>
+    <div class="form-group"> 
+        <label class="control-label" for="pwd">密码</label>
+        <input type="password" class="form-control" id="pwd" name="pwd">
+    </div>
+
+    <button id="loginBtn" class="btn btn-success">登录</button>
+
+    <div class="line line-dashed"></div>
+
+    <p class="text-muted text-center"><small>没有帐户?</small></p>
+
+    <a id="registerBtn" href="/register" class="btn btn-default btn-block">注册</a>
 </form>
+{% endblock %}
+{% block js %}
+<script>
+$(function() {
+    $("#name").focus();
+
+    function showMsg(msg, id) {
+        $("#loginMsg").html(msg).show();
+        if(id) {
+            $("#" + id).focus();
+        }
+    }
+    function hideMsg() {
+        $("#loginMsg").hide();
+    }
+    $("#loginBtn").click(function(e){
+
+        e.preventDefault();
+        var user  = $("#user").val();
+        var pwd   = $("#pwd").val();
+        if(!user) {
+            showMsg("请输入用户名", "user");
+            return;
+        } else {
+            var userreg = /^[a-zA-Z]{1}([a-zA-Z0-9_]){3,13}$/;
+            if(!userreg.test(user)) {
+                showMsg("用户必须为4-14位", "user");
+                return;
+            }
+        }
+        if(!pwd) {
+            showMsg("请输入密码", "pwd");
+            return;
+        } else {
+            if(pwd.length < 6) {
+                showMsg("密码至少6位", "pwd");
+                return;
+            }
+        }
+
+        $.post("/login", {name: user, password: pwd}, function(e) {
+            $("#loginBtn").html("登录").removeClass("disabled");
+            if(e.Ok) {
+                $("#loginBtn").html("登录成功, 正在跳转...");
+                var from = $("#from").val() || "/";
+                location.href = from;
+            } else {
+                showMsg(e.Msg, "name");
+            }
+        });
+    });
+});
+</script>
 {%endblock%}

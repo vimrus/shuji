@@ -8,9 +8,13 @@ import (
 
 func Index(c *gin.Context) {
 	session := sessions.Default(c)
-	name := session.Get("username")
+	username := session.Get("username")
+	name := username
 	if name == nil {
 		name = "shuji"
 	}
-	c.HTML(200, "templates/index.html", pongo2.Context{"name": name})
+	c.HTML(200, "templates/index.html", pongo2.Context{
+		"name":     name,
+		"username": username,
+	})
 }
