@@ -11,10 +11,11 @@ func Index(c *gin.Context) {
 	username := session.Get("username")
 	name := username
 	if name == nil {
-		name = "shuji"
+		c.HTML(200, "templates/index.html", pongo2.Context{})
+	} else {
+		c.HTML(200, "templates/home.html", pongo2.Context{
+			"name":     name,
+			"username": username,
+		})
 	}
-	c.HTML(200, "templates/index.html", pongo2.Context{
-		"name":     name,
-		"username": username,
-	})
 }

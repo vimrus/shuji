@@ -23,6 +23,8 @@ func main() {
 	r.GET("/logout", handlers.Logout)
 	r.GET("/register", handlers.Register)
 	r.POST("/register", handlers.Signup)
+	r.GET("/new", handlers.New)
+	r.GET("/books", handlers.Books)
 
 	r.Run(":8080")
 }
