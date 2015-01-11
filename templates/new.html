@@ -1,7 +1,7 @@
 {%extends "layout.html"%}
 {%block title%}创建书籍{%endblock%}
 {%block content%}
-<form id="login-form" class="form" action="#" method="post" name="signin-form">
+<form id="create-form" class="form" action="#" method="post" name="create-form">
     <div class="alert alert-danger" id="newMsg"></div> 
     <div class="form-group"> 
         <label class="control-label" for="name">书名</label>
@@ -42,7 +42,7 @@ $(function() {
             $("#newBtn").html("创建").removeClass("disabled");
             if(e.Ok) {
                 $("#newBtn").html("创建成功, 正在跳转...");
-                var from = $("#from").val() || "/";
+                var from = "/books";
                 location.href = from;
             } else {
                 showMsg(e.Msg, "name");

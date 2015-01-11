@@ -16,5 +16,6 @@ func getDB() *gorp.DbMap {
 
 	dbmap := &gorp.DbMap{Db: db, Dialect: gorp.MySQLDialect{"InnoDB", "UTF8"}}
 	dbmap.AddTableWithName(User{}, "user").SetKeys(true, "Id")
+	dbmap.AddTableWithName(Book{}, "book").SetKeys(true, "Id")
 	return dbmap
 }
