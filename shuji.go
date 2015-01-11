@@ -24,6 +24,7 @@ func main() {
 	r.GET("/register", handlers.Register)
 	r.POST("/register", handlers.Signup)
 	r.GET("/new", handlers.New)
+	r.POST("/new", handlers.Create)
 	r.GET("/books", handlers.Books)
 
 	r.Run(":8080")

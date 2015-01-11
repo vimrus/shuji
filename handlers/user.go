@@ -32,6 +32,7 @@ func Signin(c *gin.Context) {
 		c.JSON(200, gin.H{"status": "fail", "error": err})
 	} else {
 		session := sessions.Default(c)
+		session.Set("userid", user.Id)
 		session.Set("account", user.Account)
 		session.Set("avatar", user.Avatar)
 		session.Save()
@@ -60,6 +61,7 @@ func Signup(c *gin.Context) {
 		panic(err)
 	}
 	session := sessions.Default(c)
+	session.Set("userid", user.Id)
 	session.Set("account", user.Account)
 	session.Set("avatar", user.Avatar)
 	session.Save()
