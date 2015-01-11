@@ -10,7 +10,7 @@
     </div>
     <div class="form-group"> 
         <label class="control-label" for="email">用户名</label>
-        <input type="text" class="form-control" id="user" name="user"> 
+        <input type="text" class="form-control" id="account" name="account"> 
     </div>
     <div class="form-group"> 
         <label class="control-label" for="pwd">密码</label>
@@ -49,7 +49,7 @@ $(function() {
 
         e.preventDefault();
         var email = $("#email").val();
-        var user  = $("#user").val();
+        var account  = $("#account").val();
         var pwd   = $("#pwd").val();
         var pwd2  = $("#pwd2").val();
         if(!email) {
@@ -62,13 +62,13 @@ $(function() {
                 return;
             }
         }
-        if(!user) {
-            showMsg("请输入用户名", "user");
+        if(!account) {
+            showMsg("请输入用户名", "account");
             return;
         } else {
-            var userreg = /^[a-zA-Z]{1}([a-zA-Z0-9_]){3,13}$/;
-            if(!userreg.test(user)) {
-                showMsg("用户必须为4-14位", "user");
+            var accountreg = /^[a-zA-Z]{1}([a-zA-Z0-9_]){3,13}$/;
+            if(!accountreg.test(account)) {
+                showMsg("用户必须为4-14位", "account");
                 return;
             }
         }
@@ -91,7 +91,7 @@ $(function() {
             }
         }
 
-        $.post("/register", {email: email, password: pwd, name: user}, function(e) {
+        $.post("/register", {email: email, password: pwd, account: account}, function(e) {
             $("#registerBtn").html("注册").removeClass("disabled");
             if(e.Ok) {
                 $("#registerBtn").html("注册成功, 正在跳转...");

@@ -2,7 +2,7 @@ SET NAMES utf8;
 
 CREATE TABLE `user` (
       `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-      `name` varchar(30) NOT NULL,
+      `account` varchar(30) NOT NULL,
       `password` varchar(255) NOT NULL,
       `email` varchar(60) NOT NULL,
       `avatar` varchar(255) NOT NULL,

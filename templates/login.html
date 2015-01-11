@@ -6,7 +6,7 @@
     <div class="alert alert-danger" id="loginMsg"></div> 
     <div class="form-group"> 
         <label class="control-label" for="email">用户名</label>
-        <input type="text" class="form-control" id="user" name="user"> 
+        <input type="text" class="form-control" id="account" name="account"> 
     </div>
     <div class="form-group"> 
         <label class="control-label" for="pwd">密码</label>
@@ -25,7 +25,7 @@
 {% block js %}
 <script>
 $(function() {
-    $("#name").focus();
+    $("#account").focus();
 
     function showMsg(msg, id) {
         $("#loginMsg").html(msg).show();
@@ -39,15 +39,15 @@ $(function() {
     $("#loginBtn").click(function(e){
 
         e.preventDefault();
-        var user  = $("#user").val();
+        var account = $("#account").val();
         var pwd   = $("#pwd").val();
-        if(!user) {
-            showMsg("请输入用户名", "user");
+        if(!account) {
+            showMsg("请输入用户名", "account");
             return;
         } else {
-            var userreg = /^[a-zA-Z]{1}([a-zA-Z0-9_]){3,13}$/;
-            if(!userreg.test(user)) {
-                showMsg("用户必须为4-14位", "user");
+            var accountreg = /^[a-zA-Z]{1}([a-zA-Z0-9_]){3,13}$/;
+            if(!accountreg.test(account)) {
+                showMsg("用户必须为4-14位", "account");
                 return;
             }
         }
@@ -61,14 +61,14 @@ $(function() {
             }
         }
 
-        $.post("/login", {name: user, password: pwd}, function(e) {
+        $.post("/login", {account: account, password: pwd}, function(e) {
             $("#loginBtn").html("登录").removeClass("disabled");
             if(e.Ok) {
                 $("#loginBtn").html("登录成功, 正在跳转...");
                 var from = $("#from").val() || "/";
                 location.href = from;
             } else {
-                showMsg(e.Msg, "name");
+                showMsg(e.Msg, "account");
             }
         });
     });

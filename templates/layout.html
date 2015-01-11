@@ -23,11 +23,11 @@
       <li class="nav-item"><a href="/blog">博客</a></li>
     </ul>
     <div class="header-actions">
-      {% if username == nil %}
+      {% if account == nil %}
       <a href="/login" class="button">登录</a></li>
       <a href="/register" class="button">注册</a></li>
       {% else %}
-      {{ username }}
+      {{ account }}
       <a href="/books" class="button">写作</a></li>
       {% endif %}
     </div>

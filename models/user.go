@@ -9,7 +9,7 @@ import (
 
 type User struct {
 	Id        int64
-	Name      string
+	Account   string
 	Password  string
 	Email     string
 	Avatar    string
@@ -17,28 +17,28 @@ type User struct {
 	LastLogin string
 }
 
-func GetUserByName(name string) User {
+func GetUserByAccount(account string) User {
 	var user User
-	err := dbmap.SelectOne(&user, "select * from user where name = ?", name)
+	err := dbmap.SelectOne(&user, "select * from user where account = ?", account)
 	if err != nil {
 		panic(err)
 	}
 	return user
 }
 
-func CreateUser(name string, email string, password string) (*User, error) {
-	user := &User{0, name, utils.Sha1(password + name), email, "", time.Now().Format("2006-01-02 15:04:05"), ""}
+func CreateUser(account string, email string, password string) (*User, error) {
+	user := &User{0, account, utils.Sha1(password + account), email, "", time.Now().Format("2006-01-02 15:04:05"), ""}
 	err := dbmap.Insert(user)
 	return user, err
 }
 
-func Authorize(name string, password string) (User, error) {
+func Authorize(account string, password string) (User, error) {
 	var user User
-	err := dbmap.SelectOne(&user, "select * from user where name = ?", name)
+	err := dbmap.SelectOne(&user, "select * from user where account = ?", account)
 	if err != nil {
 		return user, err
 	}
-	if user.Password == utils.Sha1(password+user.Name) {
+	if user.Password == utils.Sha1(password+user.Account) {
 		return user, nil
 	}
 	return user, errors.New("用户名或者密码错误")
