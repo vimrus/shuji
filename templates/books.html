@@ -1,2 +1,9 @@
 {%extends "layout.html"%}
 {%block title%}我的书籍{%endblock%}
+{%block content%}
+<ul>
+{%for book in books%}
+<li><a href="/{{account}}/{{book.Name}}">{{book.Name}}</a><li>
+{%endfor%}
+</ul>
+{%endblock%}

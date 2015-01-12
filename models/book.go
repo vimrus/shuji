@@ -20,9 +20,9 @@ func CreateBook(name string, desc string, userid int64) (*Book, error) {
 	return book, err
 }
 
-func GetUserBooks(account string) []Book {
+func GetUserBooks(userid int64) []Book {
 	var books []Book
-	_, err := dbmap.Select(&books, "select * from book where createdby = ?", account)
+	_, err := dbmap.Select(&books, "select * from book where createdby = ?", userid)
 	if err != nil {
 		panic(err)
 	}

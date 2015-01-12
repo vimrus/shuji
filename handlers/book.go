@@ -42,7 +42,8 @@ func Books(c *gin.Context) {
 	session := sessions.Default(c)
 	account := session.Get("account")
 	name := account.(string)
-	books := models.GetUserBooks(name)
+	userid := session.Get("userid").(int64)
+	books := models.GetUserBooks(userid)
 	if cap(books) == 0 {
 		c.Redirect(301, "/new")
 	} else {
@@ -52,4 +53,8 @@ func Books(c *gin.Context) {
 			"books":   books,
 		})
 	}
+}
+
+func Book(c *gin.Context) {
+
 }
