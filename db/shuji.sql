@@ -13,7 +13,7 @@ CREATE TABLE `user` (
 CREATE TABLE `book` (
       `id` int(11) NOT NULL AUTO_INCREMENT,
       `name` varchar(100) NOT NULL,
-      `desc` int(11) NOT NULL,
+      `desc` text NOT NULL,
       `type` varchar(10) NOT NULL,
       `createdBy` int(11) NOT NULL,
       `createdAt` datetime NOT NULL,
