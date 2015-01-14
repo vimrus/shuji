@@ -3,7 +3,7 @@
 {%block content%}
 <ul>
 {%for book in books%}
-<li><a href="/{{account}}/{{book.Name}}">{{book.Name}}</a><li>
+<li><a href="/book/{{book.Id}}">{{book.Name}}</a><li>
 {%endfor%}
 </ul>
 {%endblock%}

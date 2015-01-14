@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/gin-gonic/contrib/sessions"
-	"github.com/gin-gonic/gin"
+	"github.com/vimrus/gin"
 	"github.com/vimrus/shuji/handlers"
 	"github.com/vimrus/shuji/utils"
+	"github.com/vimrus/shuji/utils/sessions"
 )
 
 func main() {
@@ -14,7 +14,7 @@ func main() {
 	r.Use(sessions.Sessions("session", store))
 
 	//r.LoadHTMLTemplates("templates/*")
-	r.HTMLRender = utils.NewPongoRender(r)
+	r.HTMLRender = utils.NewPongoRender()
 	r.Static("/static", "static")
 
 	r.GET("/", handlers.Index)
@@ -26,7 +26,7 @@ func main() {
 	r.GET("/new", handlers.New)
 	r.POST("/new", handlers.Create)
 	r.GET("/books", handlers.Books)
-	r.GET("/account/:book", handlers.Book)
+	r.GET("/book/:book", handlers.Book)
 
 	r.Run(":8080")
 }

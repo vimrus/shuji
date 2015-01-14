@@ -2,8 +2,8 @@ package handlers
 
 import (
 	"github.com/flosch/pongo2"
-	"github.com/gin-gonic/contrib/sessions"
-	"github.com/gin-gonic/gin"
+	"github.com/vimrus/gin"
+	"github.com/vimrus/shuji/utils/sessions"
 )
 
 func Index(c *gin.Context) {

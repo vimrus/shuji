@@ -2,10 +2,10 @@ package handlers
 
 import (
 	"github.com/flosch/pongo2"
-	"github.com/gin-gonic/contrib/sessions"
-	"github.com/gin-gonic/gin"
-	"github.com/gin-gonic/gin/binding"
+	"github.com/vimrus/gin"
+	"github.com/vimrus/gin/binding"
 	"github.com/vimrus/shuji/models"
+	"github.com/vimrus/shuji/utils/sessions"
 )
 
 type LoginForm struct {

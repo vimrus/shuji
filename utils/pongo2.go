@@ -2,17 +2,15 @@ package utils
 
 import (
 	"github.com/flosch/pongo2"
-	"github.com/gin-gonic/gin"
 	"net/http"
 )
 
 type pongoRender struct {
-	r     *gin.Engine
 	cache map[string]*pongo2.Template
 }
 
-func NewPongoRender(r *gin.Engine) *pongoRender {
-	return &pongoRender{r, map[string]*pongo2.Template{}}
+func NewPongoRender() *pongoRender {
+	return &pongoRender{map[string]*pongo2.Template{}}
 }
 
 func writeHeader(w http.ResponseWriter, code int, contentType string) {
