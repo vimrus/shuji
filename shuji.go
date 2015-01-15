@@ -26,7 +26,7 @@ func main() {
 	r.GET("/new", handlers.New)
 	r.POST("/new", handlers.Create)
 	r.GET("/books", handlers.Books)
-	r.GET("/book/:book", handlers.Book)
+	r.GET("/book/:bookid", handlers.Book)
 
 	r.Run(":8080")
 }

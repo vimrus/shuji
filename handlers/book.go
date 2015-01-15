@@ -56,5 +56,14 @@ func Books(c *gin.Context) {
 }
 
 func Book(c *gin.Context) {
-
+	session := sessions.Default(c)
+	account := session.Get("account")
+	name := account.(string)
+	bookid := c.Params.ByName("bookid")
+	book := models.GetBook(bookid)
+	c.HTML(200, "templates/book.html", pongo2.Context{
+		"name":    name,
+		"account": account,
+		"book":    book,
+	})
 }

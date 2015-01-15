@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	DefaultKey  = "github.com/gin-gonic/contrib/sessions"
+	DefaultKey  = "github.com/vimrus/contrib/sessions"
 	errorFormat = "[sessions] ERROR! %s\n"
 )
 

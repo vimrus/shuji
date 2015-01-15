@@ -28,3 +28,12 @@ func GetUserBooks(userid int64) []Book {
 	}
 	return books
 }
+
+func GetBook(bookid int64) Book {
+	var book Book
+	err := dbmap.SelectOne(&book, "select * from book where createdby = ?", bookid)
+	if err != nil {
+		panic(err)
+	}
+	return book
+}
