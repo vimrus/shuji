@@ -20,7 +20,7 @@ type RegisterForm struct {
 }
 
 func Login(c *gin.Context) {
-	c.HTML(200, "templates/login.html", pongo2.Context{})
+	c.HTML(200, "login.html", pongo2.Context{})
 }
 
 func Signin(c *gin.Context) {
@@ -49,7 +49,7 @@ func Logout(c *gin.Context) {
 }
 
 func Register(c *gin.Context) {
-	c.HTML(200, "templates/register.html", pongo2.Context{})
+	c.HTML(200, "register.html", pongo2.Context{})
 }
 
 func Signup(c *gin.Context) {

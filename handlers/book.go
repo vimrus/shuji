@@ -6,6 +6,7 @@ import (
 	"github.com/vimrus/gin/binding"
 	"github.com/vimrus/shuji/models"
 	"github.com/vimrus/shuji/utils/sessions"
+	"strconv"
 )
 
 type CreateForm struct {
@@ -17,7 +18,7 @@ func New(c *gin.Context) {
 	session := sessions.Default(c)
 	account := session.Get("account")
 	name := account
-	c.HTML(200, "templates/new.html", pongo2.Context{
+	c.HTML(200, "new.html", pongo2.Context{
 		"name":    name,
 		"account": account,
 	})
@@ -47,7 +48,7 @@ func Books(c *gin.Context) {
 	if cap(books) == 0 {
 		c.Redirect(301, "/new")
 	} else {
-		c.HTML(200, "templates/books.html", pongo2.Context{
+		c.HTML(200, "books.html", pongo2.Context{
 			"name":    name,
 			"account": account,
 			"books":   books,
@@ -59,9 +60,9 @@ func Book(c *gin.Context) {
 	session := sessions.Default(c)
 	account := session.Get("account")
 	name := account.(string)
-	bookid := c.Params.ByName("bookid")
-	book := models.GetBook(bookid)
-	c.HTML(200, "templates/book.html", pongo2.Context{
+	bookid, _ := strconv.Atoi(c.Params.ByName("bookid"))
+	book := models.GetBook(int64(bookid))
+	c.HTML(200, "book.html", pongo2.Context{
 		"name":    name,
 		"account": account,
 		"book":    book,

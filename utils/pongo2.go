@@ -28,7 +28,7 @@ func (p *pongoRender) Render(w http.ResponseWriter, code int, data ...interface{
 	if tmpl, ok := p.cache[file]; ok {
 		t = tmpl
 	} else {
-		tmpl, err := pongo2.FromFile(file)
+		tmpl, err := pongo2.FromFile("templates/" + file)
 		if err != nil {
 			return err
 		}

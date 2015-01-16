@@ -31,7 +31,7 @@ func GetUserBooks(userid int64) []Book {
 
 func GetBook(bookid int64) Book {
 	var book Book
-	err := dbmap.SelectOne(&book, "select * from book where createdby = ?", bookid)
+	err := dbmap.SelectOne(&book, "select * from book where id = ?", bookid)
 	if err != nil {
 		panic(err)
 	}
