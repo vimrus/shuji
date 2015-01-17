@@ -27,6 +27,7 @@ func main() {
 	r.POST("/new", handlers.Create)
 	r.GET("/books", handlers.Books)
 	r.GET("/book/:bookid", handlers.Book)
+	r.GET("/edit/:bookid", handlers.Edit)
 
 	r.Run(":8080")
 }

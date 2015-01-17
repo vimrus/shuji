@@ -68,3 +68,16 @@ func Book(c *gin.Context) {
 		"book":    book,
 	})
 }
+
+func Edit(c *gin.Context) {
+	session := sessions.Default(c)
+	account := session.Get("account")
+	name := account.(string)
+	bookid, _ := strconv.Atoi(c.Params.ByName("bookid"))
+	book := models.GetBook(int64(bookid))
+	c.HTML(200, "edit.html", pongo2.Context{
+		"name":    name,
+		"account": account,
+		"book":    book,
+	})
+}
