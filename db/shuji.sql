@@ -19,11 +19,11 @@ CREATE TABLE `book` (
       `createdAt` datetime NOT NULL,
       PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-REATE TABLE `article` (
+CREATE TABLE `article` (
       `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
       `title` varchar(255) NOT NULL,
       `content` text NOT NULL,
       `order` smallint NOT NULL,
       `createdAt` datetime NOT NULL,
       `lastEdit` datetime NOT NULL
-) COMMENT='' ENGINE='InnoDB' COLLATE 'utf8_general_ci';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
