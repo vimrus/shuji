@@ -1,4 +1,25 @@
-{%extends "layout.html"%}
-{%block title%}{{book.Name}}{%endblock%}
-{%block content%}
-{%endblock%}
+<!DOCTYPE HTML >
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta content="{%block desc%}{%endblock%}">
+<title>{{book.Name}} - 书集</title>
+<link rel="stylesheet" type="text/css" media="screen"  href="/static/css/typo.css" />
+<link rel="stylesheet" type="text/css" media="screen"  href="/static/css/style.css" />
+</head>
+<body>
+<div class="header">
+  <div class="container clearfix">
+  </div>
+</div>
+<div class="main">
+  <div class="container clearfix">
+  </div>
+</div>
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.form.js"></script>
+<script type="text/javascript" src="/static/js/shuji.js"></script>
+{%block js%}{%endblock%}
+</body>
+</html>
