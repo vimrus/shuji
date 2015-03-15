@@ -2,6 +2,7 @@ package models
 
 import (
 	"errors"
+	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/vimrus/shuji/utils"
 	"time"
@@ -27,9 +28,12 @@ func GetUserByAccount(account string) User {
 }
 
 func CreateUser(account string, email string, password string) (*User, error) {
-	user := &User{0, account, utils.Sha1(password + account), email, "", time.Now().Format("2006-01-02 15:04:05"), ""}
-	err := dbmap.Insert(user)
-	return user, err
+	var user User
+	user = GetUserByAccount(account)
+	fmt.Println(user)
+	user = User{0, account, utils.Sha1(password + account), email, "", time.Now().Format("2006-01-02 15:04:05"), ""}
+	err := dbmap.Insert(&user)
+	return &user, err
 }
 
 func Authorize(account string, password string) (User, error) {
